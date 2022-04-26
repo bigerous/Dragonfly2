@@ -114,7 +114,7 @@ func New(options ...Option) (Dfpath, error) {
 				cache.errs = append(cache.errs, errors.Errorf("create %s dir %s failed: %v", name, dir, err))
 			}
 		}
-		fmt.Println("directory details : %+v", d)
+		fmt.Printf("directory details : %+v\n", d)
 
 		cache.d = d
 	})

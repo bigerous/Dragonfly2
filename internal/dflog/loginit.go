@@ -17,6 +17,7 @@
 package logger
 
 import (
+	"fmt"
 	"path"
 	"path/filepath"
 
@@ -35,6 +36,7 @@ func InitManager(verbose, console bool, dir string) error {
 	}
 
 	logDir := filepath.Join(dir, "manager")
+	fmt.Printf("log dir : %v", logDir)
 
 	var meta = []logInitMeta{
 		{
