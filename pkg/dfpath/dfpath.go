@@ -17,6 +17,7 @@
 package dfpath
 
 import (
+	"fmt"
 	"path/filepath"
 	"sync"
 
@@ -113,6 +114,7 @@ func New(options ...Option) (Dfpath, error) {
 				cache.errs = append(cache.errs, errors.Errorf("create %s dir %s failed: %v", name, dir, err))
 			}
 		}
+		fmt.Println("directory details : %+v", d)
 
 		cache.d = d
 	})
