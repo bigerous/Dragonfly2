@@ -100,6 +100,7 @@ func (d *dynconfig) GetSchedulers() ([]*manager.Scheduler, error) {
 	if err != nil {
 		return nil, err
 	}
+	logger.Infof("get schedulers:%+v", data)
 
 	return data.Schedulers, nil
 }

@@ -21,7 +21,7 @@ base:
 
   # AdvertiseIP is used to set the ip that we advertise to other peer in the p2p-network.
   # By default, the first non-loop address is advertised.
-  advertiseIP: __IP__
+  advertiseIP: 8.218.111.122
 
   # FailAccessInterval is the interval time after failed to access the URL.
   # If a task failed to be downloaded from the source, it will not be retried in the time since the last failure.
@@ -52,7 +52,7 @@ base:
 
   # manager configuration
   manager:
-    addr: "__IP__:65003"
+    addr: "8.218.111.122:65003"
     cdnClusterID: "1"
     keepAlive:
       interval: 5s
@@ -119,10 +119,14 @@ verbose: true
 
 # listen port for pprof, only valid when the verbose option is true
 # default is -1. If it is 0, pprof will use a random port.
-pprof-port: -1
+pprof-port: 50002
+
+metrics:
+  # metrics service address
+  addr: ":40002"
 
 # jaeger endpoint url, like: http://jaeger.dragonfly.svc:14268/api/traces
-jaeger: ""
+jaeger: "http://localhost:14268/api/traces"
 
 # service name used in tracer
 # default: dragonfly-cdn

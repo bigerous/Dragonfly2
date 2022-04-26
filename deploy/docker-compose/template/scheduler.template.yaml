@@ -66,7 +66,7 @@ host:
 # manager configuration
 manager:
   # addr manager access address
-  addr: "__IP__:65003"
+  addr: "8.218.111.122:65003"
   # schedulerClusterID cluster id to which scheduler instance belongs
   schedulerClusterID: "1"
   # keepAlive keep alive configuration
@@ -95,11 +95,9 @@ job:
   # redis configuration
   redis:
     # host
-    host: "__IP__"
+    host: "8.218.111.122"
     # port
     port: 6379
-    # password
-    password: dragonfly
     # brokerDB
     brokerDB: 1
     # backendDB
@@ -108,11 +106,11 @@ job:
 # enable prometheus metrics
 metrics:
   # scheduler enable metrics service
-  enable: false
+  enable: true
   # metrics service address
-  addr: ":8000"
+  addr: ":40003"
   # enable peer host metrics
-  enablePeerHost: false
+  enablePeerHost: true
 
 # console shows log on console
 console: false
@@ -122,7 +120,7 @@ verbose: true
 
 # listen port for pprof, only valid when the verbose option is true
 # default is -1. If it is 0, pprof will use a random port.
-pprof-port: -1
+pprof-port: 50003
 
 # jaeger endpoint url, like: http://jaeger.dragonfly.svc:14268/api/traces
-jaeger: ""
+jaeger: "http://localhost:14268/api/traces"

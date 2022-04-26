@@ -41,7 +41,7 @@ verbose: true
 pprof-port: -1
 
 # jaeger endpoint url, like: http://jaeger.dragonfly.svc:14268/api/traces
-jaeger: ""
+jaeger: "http://8.218.111.122:14268/api/traces"
 
 # all addresses of all schedulers
 # the schedulers of all daemons should be same in one region or zone.
@@ -54,17 +54,17 @@ scheduler:
     # manager service addresses
     netAddrs:
       - type: tcp
-        addr: __IP__:65003
+        addr: 8.218.111.122:65003
         # scheduler list refresh interval
         refreshInterval: 5m
   # schedule timeout
   scheduleTimeout: 30s
   # when true, only scheduler says back source, daemon can back source
-  disableAutoBackSource: false
+  disableAutoBackSource: true
   # below example is a stand address
   netAddrs:
     - type: tcp
-      addr: __IP__:8002
+      addr: 8.218.111.122:8002
 
 # current host info used for scheduler
 host:
@@ -73,7 +73,7 @@ host:
   listenIP: 0.0.0.0
   # access ip for other peers
   # when local ip is different with access ip, advertiseIP should be set
-  advertiseIP: __IP__
+  advertiseIP: 172.31.159.25
   # geographical location, separated by "|" characters
   location: ""
   # idc deployed by daemon
