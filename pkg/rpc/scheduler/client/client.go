@@ -191,7 +191,7 @@ func (c *client) LeaveHost(ctx context.Context, req *schedulerv1.LeaveHostReques
 		wg.Add(1)
 		go func(addr string) {
 			defer wg.Done()
-			if err := c.leaveHost(trace.ContextWithSpan(context.Background(), trace.SpanFromContext(ctx)), addr, req, opts...); err != nil {
+			if err := c.leaveHost(trace.ContextWithSpan(ctx, trace.SpanFromContext(ctx)), addr, req, opts...); err != nil {
 				logger.Error(err)
 				return
 			}
