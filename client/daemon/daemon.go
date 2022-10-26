@@ -765,6 +765,16 @@ func (cd *clientDaemon) Serve() error {
 func (cd *clientDaemon) Stop() {
 	cd.once.Do(func() {
 		close(cd.done)
+		if cd.schedulerClient != nil {
+			ctx, _ := context.WithTimeout(context.Background(), time.Second*5)
+			cd.schedulerClient.LeaveHost(ctx, &schedulerv1.LeaveHostRequest{Id: cd.schedPeerHost.Id})
+			if err := cd.schedulerClient.Close(); err != nil {
+				logger.Errorf("scheduler client failed to stop: %s", err.Error())
+			} else {
+				logger.Info("scheduler client closed")
+			}
+		}
+
 		cd.GCManager.Stop()
 		cd.RPCManager.Stop()
 		if err := cd.UploadManager.Stop(); err != nil {
@@ -803,14 +813,6 @@ func (cd *clientDaemon) Stop() {
 				logger.Errorf("manager client failed to stop: %s", err.Error())
 			} else {
 				logger.Info("manager client closed")
-			}
-		}
-
-		if cd.schedulerClient != nil {
-			if err := cd.schedulerClient.Close(); err != nil {
-				logger.Errorf("scheduler client failed to stop: %s", err.Error())
-			} else {
-				logger.Info("scheduler client closed")
 			}
 		}
 	})
